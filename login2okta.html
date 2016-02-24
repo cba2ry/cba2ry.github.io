@@ -20,7 +20,10 @@
 	<div id="okta-login-container"></div>
 	<script type="text/javascript">
 		var baseUrl = 'https://cbarry.okta.com';
-		var oktaSignIn = new OktaSignIn({baseUrl: baseUrl});
+		var oktaSignIn = new OktaSignIn({
+			baseUrl: baseUrl,
+			logo: 'images/ClownCone.jpg'
+		});
 
 		oktaSignIn.renderEl(
 		  { el: '#okta-login-container' },
