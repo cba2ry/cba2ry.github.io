@@ -1,5 +1,8 @@
 // app.js
 var routerApp = angular.module('routerApp', ['ui.router']);
+var username = '';
+var password = '';
+var authClient = new OktaAuth({url: 'https://cbarry.okta.com'});
 
 routerApp.config(function($stateProvider, $urlRouterProvider) {
 
@@ -68,7 +71,30 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
 routerApp.controller('authController', function($scope) {
 
     $scope.signin = function() {
-      $scope.message = $scope.username;
+      username = $scope.username;
+      password = $scope.password;
+
+      authClient.signIn({
+        username: username,
+        password: password
+      })
+      .then(function(transaction) { // On success
+        switch(transaction.status) {
+
+          case 'SUCCESS':
+            //authClient.session.setCookieAndRedirect(transaction.sessionToken); // Sets a cookie on redirect
+            $scope.message = transaction.status;
+            break;
+
+          default:
+            $scope.message = transaction.status;
+            throw 'We cannot handle the ' + transaction.status + ' status';
+        }
+      })
+      .fail(function(err) { // On failure
+        console.error(err);
+        $scope.message = err;
+      });
     }
 
 });
