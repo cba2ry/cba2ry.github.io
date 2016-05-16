@@ -31,7 +31,7 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
         // Okta AuthN stuff
         .state('authenticate', {
             url: '/authenticate',
-            templateUrl: 'pages/partial-login.html',
+            templateUrl: 'pages/partial-signin.html',
             template: 'This is the auth input form.'
         })
 
