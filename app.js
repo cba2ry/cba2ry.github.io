@@ -33,17 +33,18 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
             url: '/authenticate',
             views: {
               '': {
-                templateUrl: 'pages/partial-signin.html'
+                templateUrl: 'pages/partial-signin.html',
+                controller: 'authController'
               }
             }
 
         })
-
+/*
         .state('authenticate.signin', {
             url: '/authresult',
             controller: 'authController'
         })
-
+*/
         // ABOUT PAGE AND MULTIPLE NAMED VIEWS =================================
         .state('about', {
           url: '/about',
@@ -66,7 +67,9 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
 
 routerApp.controller('authController', function($scope) {
 
-    $scope.message = 'test';
+    $scope.signin = function() {
+      $scope.message = 'test';
+    }
 
 });
 
