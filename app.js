@@ -68,7 +68,7 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
 routerApp.controller('authController', function($scope) {
 
     $scope.signin = function() {
-      $scope.message = 'test';
+      $scope.message = $scope.username;
     }
 
 });
