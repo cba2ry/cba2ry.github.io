@@ -29,6 +29,28 @@ scotchApp.config(function($routeProvider) {
 scotchApp.controller('mainController', function($scope) {
     // create a message to display in our view
     $scope.message = 'Everyone come and see how good I look!';
+
+    $scope.authenticate = function() {
+      $scope.message = 'Called authController!';
+      authClient.signIn({
+        username: 'chris.barry',
+        password: 'Training123'
+      })
+      .then(function(transaction) { // On success
+        switch(transaction.status) {
+
+          case 'SUCCESS':
+            authClient.session.setCookieAndRedirect(transaction.sessionToken); // Sets a cookie on redirect
+            break;
+
+          default:
+            throw 'We cannot handle the ' + transaction.status + ' status';
+        }
+      })
+      .fail(function(err) { // On failure
+        console.error(err);
+      });
+    }    
 });
 
 scotchApp.controller('aboutController', function($scope) {
