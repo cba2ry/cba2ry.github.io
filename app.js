@@ -33,15 +33,15 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
             url: '/authenticate',
             views: {
               '': {
-                templateUrl: 'pages/partial-signin.html',
-                controller: 'authController' }
+                templateUrl: 'pages/partial-signin.html'
+              }
             }
 
         })
 
         .state('authenticate.signin', {
             url: '/authresult',
-            template: 'This is the auth result.'
+            controller: 'authController'
         })
 
         // ABOUT PAGE AND MULTIPLE NAMED VIEWS =================================
