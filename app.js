@@ -32,7 +32,9 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
         .state('authenticate', {
             url: '/authenticate',
             views: {
-              '': { templateUrl: 'pages/partial-signin.html' }
+              '': {
+                templateUrl: 'pages/partial-signin.html',
+                controller: 'authController' }
             }
 
         })
@@ -60,6 +62,12 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
               }
           }
         });
+});
+
+routerApp.controller('authController', function($scope) {
+
+    $scope.message = 'test';
+
 });
 
 // let's define the scotch controller that we call up in the about state
