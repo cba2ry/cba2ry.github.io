@@ -90,7 +90,16 @@ routerApp.controller('authController', function($scope) {
             $scope.message = transaction.status;
             throw 'We cannot handle the ' + transaction.status + ' status';
         }
-        $scope.message = transaction.status;
+        
+        $stateProvider.state('authenticate', {
+            url: '/authenticate',
+            views: {
+              '': {
+                templateUrl: 'pages/partial-signin.html',
+                controller: 'authController'
+              }
+            }
+        )
       })
       .fail(function(err) { // On failure
         console.error(err);
