@@ -1,63 +1,36 @@
-// create the module and name it scotchApp
-    // also include ngRoute for all our routing needs
-var scotchApp = angular.module('scotchApp', ['ngRoute']);
+var routerApp = angular.module('routerApp', ['ui.router']);
 
-// configure our routes
-scotchApp.config(function($routeProvider) {
-    $routeProvider
+routerApp.config(function($stateProvider, $urlRouterProvider) {
 
-        // route for the home page
-        .when('/', {
-            templateUrl : 'pages/home.html',
-            controller  : 'mainController'
+    $urlRouterProvider.otherwise('/home');
+
+    $stateProvider
+
+        // HOME STATES AND NESTED VIEWS ========================================
+        .state('home', {
+            url: '/home',
+            templateUrl: 'partial-home.html'
         })
 
-        // route for the about page
-        .when('/about', {
-            templateUrl : 'pages/about.html',
-            controller  : 'aboutController'
-        })
-
-        // route for the contact page
-        .when('/contact', {
-            templateUrl : 'pages/contact.html',
-            controller  : 'contactController'
+        // ABOUT PAGE AND MULTIPLE NAMED VIEWS =================================
+        .state('about', {
+            // we'll get to this in a bit
         });
-});
 
-// create the controller and inject Angular's $scope
-scotchApp.controller('mainController', function($scope) {
-    // create a message to display in our view
-    $scope.authenticate = function() {
-      //$scope.message = 'Called authController!';
-      authClient.signIn({
-        username: 'chris.barry',
-        password: 'Training123'
-      })
-      .then(function(transaction) { // On success
-        $scope.message = transaction.status;
-        switch(transaction.status) {
+        // nested list with custom controller
+        .state('home.list', {
+            url: '/list',
+            templateUrl: 'partial-home-list.html',
+            controller: function($scope) {
+                $scope.dogs = ['Bernese', 'Husky', 'Goldendoodle'];
+            }
+        })
 
-          case 'SUCCESS':
-            //authClient.session.setCookieAndRedirect(transaction.sessionToken); // Sets a cookie on redirect
-            break;
-
-          default:
-            throw 'We cannot handle the ' + transaction.status + ' status';
-        }
-      })
-      .fail(function(err) { // On failure
-        console.error(err);
-      });
-    }
-});
-
-scotchApp.controller('aboutController', function($scope) {
-    $scope.message = 'Look! I am an about page.';
-});
-
-scotchApp.controller('contactController', function($scope) {
-    $scope.message = 'Contact us! JK. This is just a demo.';
+        // nested list with just some random string data
+        .state('home.paragraph', {
+            url: '/paragraph',
+            template: 'I could sure use a drink right now.'
+        })
 });
 
 // Okta AuthN API
