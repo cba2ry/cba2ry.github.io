@@ -28,6 +28,18 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
             template: 'I could sure use a drink right now.'
         })
 
+        // Okta AuthN stuff
+        .state('authenticate', {
+            url: '/authenticate',
+            templateUrl: 'pages/partial-login.html',
+            template: 'This is the auth input form.'
+        })
+
+        .state('authenticate.signin', {
+            url: '/authresult',
+            template: 'This is the auth result.'
+        })
+
         // ABOUT PAGE AND MULTIPLE NAMED VIEWS =================================
         .state('about', {
           url: '/about',
