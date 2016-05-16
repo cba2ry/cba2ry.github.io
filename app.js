@@ -90,7 +90,7 @@ routerApp.controller('authController', function($scope) {
             $scope.message = transaction.status;
             throw 'We cannot handle the ' + transaction.status + ' status';
         }
-        
+        /*
         $stateProvider.state('authenticate', {
             url: '/authenticate',
             views: {
@@ -99,7 +99,7 @@ routerApp.controller('authController', function($scope) {
                 controller: 'authController'
               }
             }
-        )
+        ) */
       })
       .fail(function(err) { // On failure
         console.error(err);
