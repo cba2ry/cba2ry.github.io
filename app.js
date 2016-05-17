@@ -83,7 +83,7 @@ routerApp.controller('authController', function($scope) {
 
           case 'SUCCESS':
             //authClient.session.setCookieAndRedirect(transaction.sessionToken); // Sets a cookie on redirect
-            $scope.message = transaction.status;
+            $scope.message = authResp;
             break;
 
           default:
