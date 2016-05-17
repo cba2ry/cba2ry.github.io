@@ -87,7 +87,7 @@ routerApp.controller('authController', function($scope) {
           }
       }).fail(function(err) { // On failure
         console.error(err);
-        $scope.message = err;
+        $scope.badmessage = err;
         $scope.$apply();
       });
     }
