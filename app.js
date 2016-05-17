@@ -79,6 +79,7 @@ routerApp.controller('authController', function($scope) {
           switch(transaction.status) {
             case 'SUCCESS':
               $scope.goodmessage = transaction.status;
+              $scope.badmessage = '';
               $scope.$apply();
               //authClient.session.setCookieAndRedirect(transaction.sessionToken); // Sets a cookie on redirect
               break;
@@ -88,6 +89,7 @@ routerApp.controller('authController', function($scope) {
       }).fail(function(err) { // On failure
         console.error(err);
         $scope.badmessage = err;
+        $scope.goodmessage = '';
         $scope.$apply();
       });
     }
