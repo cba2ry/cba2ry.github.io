@@ -78,12 +78,12 @@ routerApp.controller('authController', function($scope) {
       }).then(function(transaction) { // On success
           switch(transaction.status) {
             case 'SUCCESS':
-              /*
+              
               $scope.goodmessage = transaction.status;
               $scope.badmessage = '';
               $scope.$apply();
-              */
-              authClient.session.setCookieAndRedirect(transaction.sessionToken); // Sets a cookie on redirect
+
+              //authClient.session.setCookieAndRedirect(transaction.sessionToken); // Sets a cookie on redirect
               break;
             default:
               throw 'We cannot handle the ' + transaction.status + ' status';
