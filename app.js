@@ -77,12 +77,9 @@ routerApp.controller('authController', function($scope) {
       authClient.signIn({
         username: username,
         password: password
-      })
-        .then(function(transaction) { // On success
+      }).then(function(transaction) { // On success
           $scope.message = transaction.status;
-        }
-      })
-      .fail(function(err) { // On failure
+      }).fail(function(err) { // On failure
         console.error(err);
         $scope.message = err;
       });
