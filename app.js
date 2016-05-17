@@ -6,7 +6,7 @@ var authClient = new OktaAuth({url: 'https://cbarry.okta.com'});
 
 routerApp.config(function($stateProvider, $urlRouterProvider) {
 
-    $urlRouterProvider.otherwise('/home');
+    $urlRouterProvider.otherwise('/authenticate');
 
     $stateProvider
 
