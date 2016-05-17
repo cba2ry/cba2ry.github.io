@@ -71,18 +71,24 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
 routerApp.controller('authController', function($scope) {
 
     $scope.signin = function() {
-      username = $scope.username;
-      password = $scope.password;
 
       authClient.signIn({
-        username: username,
-        password: password
+        username: $scope.username,
+        password: $scope.password
       }).then(function(transaction) { // On success
-          $scope.message = transaction.status;
-          $scope.$apply();
+          switch(transaction.status) {
+            case 'SUCCESS':
+              $scope.goodmessage = transaction.status;
+              $scope.$apply();
+              //authClient.session.setCookieAndRedirect(transaction.sessionToken); // Sets a cookie on redirect
+              break;
+            default:
+              throw 'We cannot handle the ' + transaction.status + ' status';
+          }
       }).fail(function(err) { // On failure
         console.error(err);
         $scope.message = err;
+        $scope.$apply();
       });
     }
 });
