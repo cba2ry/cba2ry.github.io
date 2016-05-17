@@ -79,6 +79,7 @@ routerApp.controller('authController', function($scope) {
         password: password
       }).then(function(transaction) { // On success
           $scope.message = transaction.status;
+          $scope.$apply();
       }).fail(function(err) { // On failure
         console.error(err);
         $scope.message = err;
