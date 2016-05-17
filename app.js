@@ -74,21 +74,12 @@ routerApp.controller('authController', function($scope) {
       username = $scope.username;
       password = $scope.password;
 
-      var authResp = authClient.signIn({
+      authClient.signIn({
         username: username,
         password: password
       })
-      .then(function(transaction) { // On success
-        switch(transaction.status) {
-
-          case 'SUCCESS':
-            //authClient.session.setCookieAndRedirect(transaction.sessionToken); // Sets a cookie on redirect
-            $scope.message = authResp;
-            break;
-
-          default:
-            $scope.message = transaction.status;
-            throw 'We cannot handle the ' + transaction.status + ' status';
+        .then(function(transaction) { // On success
+          $scope.message = transaction.status;
         }
       })
       .fail(function(err) { // On failure
@@ -96,7 +87,6 @@ routerApp.controller('authController', function($scope) {
         $scope.message = err;
       });
     }
-
 });
 
 // let's define the scotch controller that we call up in the about state
