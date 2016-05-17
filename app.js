@@ -74,7 +74,7 @@ routerApp.controller('authController', function($scope) {
       username = $scope.username;
       password = $scope.password;
 
-      authClient.signIn({
+      var authResp = authClient.signIn({
         username: username,
         password: password
       })
@@ -90,16 +90,6 @@ routerApp.controller('authController', function($scope) {
             $scope.message = transaction.status;
             throw 'We cannot handle the ' + transaction.status + ' status';
         }
-        /*
-        $stateProvider.state('authenticate', {
-            url: '/authenticate',
-            views: {
-              '': {
-                templateUrl: 'pages/partial-signin.html',
-                controller: 'authController'
-              }
-            }
-        ) */
       })
       .fail(function(err) { // On failure
         console.error(err);
