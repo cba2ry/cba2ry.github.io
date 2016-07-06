@@ -79,8 +79,7 @@ routerApp.controller('authController', function($scope) {
           switch(transaction.status) {
             case 'SUCCESS':
 
-              $scope.goodmessage = transaction.status + "\n"
-                                    + JSON.stringify(transaction, null, 2);
+              $scope.goodmessage = JSON.stringify(transaction, null, 2);
               $scope.badmessage = '';
               $scope.$apply();
 
